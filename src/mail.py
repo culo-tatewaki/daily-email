@@ -8,8 +8,6 @@ from bs4 import BeautifulSoup
 from sources.books import Books
 from sources.news import News
 
-from sources.web_novels import WebNovels
-
 
 class Email:
     def __init__(self) -> None:
@@ -33,11 +31,6 @@ class Email:
         news_list = News().news_tag_list()
         for news_item in news_list:
             news_tag.append(news_item)
-
-        wn_tag = self.__content.find("ul", id="wn")
-        series_list = WebNovels().wns_tag_list()
-        for series in series_list:
-            wn_tag.append(series)
 
     def send_email(self) -> None:
         self.__email.attach(MIMEText(self.__content, "html"))
