@@ -19,7 +19,7 @@ class Email:
         self.__email = MIMEMultipart()
         self.__email["From"] = os.getenv("EMAIL_SENDER")
         self.__email["To"] = os.getenv("EMAIL_RECEIVER")
-        self.__email["Subject"] = "Novedades del Día"
+        self.__email["Subject"] = "THE Daily Email :)"
 
     def generate_content(self) -> None:
         books_tag = self.__content.find("ul", id="books")
