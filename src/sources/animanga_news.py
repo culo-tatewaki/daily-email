@@ -2,9 +2,14 @@ from datetime import datetime, timedelta
 from bs4 import BeautifulSoup, Tag
 import requests
 
+from sources.content import Content
 
-class News:
-    def __scrape_news(self) -> list[tuple[str, str, str, str]]:
+
+class AniMangaNews(Content):
+    def __init__(self, html_id: str) -> None:
+        super().__init__(html_id)
+
+    def __scrape(self) -> list[tuple[str, str, str, str]]:
         url = "https://www.animenewsnetwork.com"
         response = requests.get(url)
         if not response.ok:
@@ -37,9 +42,9 @@ class News:
                 news.append((title, content, href, img))
         return news
 
-    def news_tag_list(self) -> list[Tag]:
+    def get_tag_list(self) -> list[Tag]:
         news_list = []
-        news = self.__scrape_news()
+        news = self.__scrape()
         soup = BeautifulSoup("<html></html>", "html.parser")
         for title, content, href, img in news:
             li_tag = soup.new_tag("li")

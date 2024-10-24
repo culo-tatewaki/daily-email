@@ -3,15 +3,20 @@ from bs4 import BeautifulSoup, Tag
 import requests
 import json
 
+from sources.content import Content
 
-class Books:
-    def __scrape_books(self) -> list[tuple[str, str, str]]:
+
+class LightNovels(Content):
+    def __init__(self, html_id: str) -> None:
+        super().__init__(html_id)
+
+    def __scrape(self) -> list[tuple[str, str, str]]:
         web_endpoint = "https://ranobedb.org"
         image_endpoint = "https://images.ranobedb.org"
         response = requests.get(f"{web_endpoint}/releases/calendar?rl=en&rf=digital")
         if not response.ok:
             return []
-        books = []
+        light_novels = []
         soup = BeautifulSoup(response.text, "html.parser")
         date = datetime.today().date()
         time_tags = soup.find_all("time", {"datetime": date.strftime("%Y-%m-%d")})
@@ -26,14 +31,14 @@ class Books:
             title = release["title"]
             href = f"{web_endpoint}/release/{release["id"]}"
             img = f"{image_endpoint}/{release["books"][0]["image"]["filename"]}"
-            books.append((title, href, img))
-        return books
+            light_novels.append((title, href, img))
+        return light_novels
 
-    def book_tag_list(self) -> list[Tag]:
+    def get_tag_list(self) -> list[Tag]:
         book_list = []
-        books = self.__scrape_books()
+        light_novels = self.__scrape()
         soup = BeautifulSoup("<html></html>", "html.parser")
-        for title, href, img in books:
+        for title, href, img in light_novels:
             li_tag = soup.new_tag("li")
             title_tag = soup.new_tag("a")
             img_tag = soup.new_tag("img")
