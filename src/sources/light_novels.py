@@ -49,10 +49,10 @@ class LightNovels(Content):
                 "width: 100%; height: auto; border-radius: 5px 5px 0 0;"
             )
             li_tag.append(img_tag)
-            title_tag.attrs["style"] = "margin: 10px 0 5px 0; font-size: 16px;"
+            title_tag.attrs["style"] = "margin: 10px 0 5px 0; font-size: 1.2em;"
             li_tag.append(title_tag)
             li_tag.attrs["style"] = (
-                "flex: 1 1 300px; padding: 5px; margin-bottom: 5px; background-color: #f5f5f5; box-sizing: border-box; border-radius: 5px; overflow: hidden;"
+                "flex: 1 1 300px; padding: 1em; margin-bottom: 1em; background-color: #f1f1f1; box-sizing: border-box; border-radius: 5px; overflow: hidden;"
             )
             book_list.append(li_tag)
         return book_list
