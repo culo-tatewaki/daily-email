@@ -20,7 +20,7 @@ class Email:
         self.__email = MIMEMultipart()
         self.__email["From"] = os.getenv("EMAIL_SENDER")
         self.__email["To"] = os.getenv("EMAIL_RECEIVER")
-        self.__email["Subject"] = "Novedades del Día"
+        self.__email["Subject"] = "THE Daily Email :)"
 
         self.__scraped_content = [
             LightNovels("light-novels"),
