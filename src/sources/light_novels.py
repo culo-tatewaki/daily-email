@@ -44,10 +44,15 @@ class LightNovels(Content):
             img_tag = soup.new_tag("img")
             title_tag.string = title
             title_tag.attrs["href"] = href
-            title_tag.attrs["style"] = "display:block; font-size: 1.2rem;"
             img_tag.attrs["src"] = img
+            img_tag.attrs["style"] = (
+                "width: 100%; height: auto; border-radius: 5px 5px 0 0;"
+            )
             li_tag.append(img_tag)
+            title_tag.attrs["style"] = "margin: 10px 0 5px 0; font-size: 16px;"
             li_tag.append(title_tag)
-            li_tag.attrs["style"] = "text-align: center;"
+            li_tag.attrs["style"] = (
+                "flex: 1 1 300px; padding: 5px; margin-bottom: 5px; background-color: #f5f5f5; box-sizing: border-box; border-radius: 5px; overflow: hidden;"
+            )
             book_list.append(li_tag)
         return book_list
